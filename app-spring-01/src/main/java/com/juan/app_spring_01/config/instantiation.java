@@ -3,6 +3,7 @@ package com.juan.app_spring_01.config;
 import com.juan.app_spring_01.domain.Post;
 import com.juan.app_spring_01.domain.User;
 import com.juan.app_spring_01.dto.AuthorDTO;
+import com.juan.app_spring_01.dto.CommentDTO;
 import com.juan.app_spring_01.repository.PostRepository;
 import com.juan.app_spring_01.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,12 @@ public class instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null,sdf.parse("22/05/2024"),"Viajar","Viagem para o rio de janeiro!", new AuthorDTO(felix) );
         Post post2 = new Post(null,sdf.parse("24/06/2024"),"Chegando","Chegando em casa!", new AuthorDTO(felix));
+
+        CommentDTO comment1 = new CommentDTO(new AuthorDTO(joao),"Boa viagem",sdf.parse("25/05/2024"));
+        CommentDTO comment2 = new CommentDTO(new AuthorDTO(joao),"Bem vindo",sdf.parse("24/06/2024"));
+
+        post1.getComments().add(comment1);
+        post2.getComments().add(comment2);
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
