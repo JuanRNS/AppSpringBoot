@@ -3,7 +3,6 @@ package com.juan.app_spring_01.service;
 import com.juan.app_spring_01.domain.User;
 import com.juan.app_spring_01.dto.UserDTO;
 import com.juan.app_spring_01.repository.UserRepository;
-import com.juan.app_spring_01.service.exception.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,16 +22,16 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public User insert(User user) {
-        return userRepository.insert(user);
+    public void insert(User user) {
+        userRepository.insert(user);
     }
     public void delete(String id){
         userRepository.deleteById(id);
     }
-    public User update(User user) {
+    public void update(User user) {
         User userDes = userRepository.findById(user.getId()).get();
         updateUser(userDes,user);
-        return userRepository.save(userDes);
+        userRepository.save(userDes);
     }
 
     private void updateUser(User userDes, User user) {
